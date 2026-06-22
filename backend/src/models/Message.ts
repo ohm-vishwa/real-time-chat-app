@@ -4,7 +4,7 @@ import { Chat } from "./Chat";
 export interface IMessage extends Document {
     chat:mongoose.Types.ObjectId;
     sender:mongoose.Types.ObjectId;
-    text:String;
+    text:string;
     createdAt: Date;
     updatedAt: Date
 }

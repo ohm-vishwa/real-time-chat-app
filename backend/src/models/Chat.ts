@@ -13,7 +13,7 @@ const ChatSchema = new Schema<IChat>({
         {
             type:Schema.Types.ObjectId,
             ref:"User",
-            require:true
+            required:true
         }
     ],
     lastMessage:{
