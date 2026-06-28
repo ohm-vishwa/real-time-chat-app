@@ -6,8 +6,13 @@ export const errorhandler = (err:Error, _req:Request, res:Response, _next:NextFu
 
     const statusCode = res.statusCode !== 200 ? res.statusCode :500
 
+    const isDevelopment = process.env.NODE_ENV === "development"
+    const message =
+        statusCode >= 500 && !isDevelopment
+            ? "Internal Server Error"
+            : err.message || "Internal Server Error"
     res.status(statusCode).json({
-        message:err.message || "Internal Server Error",
-        ...(process.env.NODE_ENV === "development" && {stack:err.stack})
+        message,
+        ...(isDevelopment && {stack:err.stack})
     })
 }
